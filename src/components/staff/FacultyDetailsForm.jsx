@@ -12,7 +12,7 @@ const FIELDS = [
   { key: "tutorship", label: "Select Tutorship", type: "text", placeholder: "Select Tutorship" },
 ];
 
-const TUTORSHIP_OPTIONS = [
+const ENGINEERING_TUTORSHIP_OPTIONS = [
   "II Year",
   "III Year",
   "IV Year",
@@ -20,8 +20,16 @@ const TUTORSHIP_OPTIONS = [
   "Not applicable"
 ];
 
-export default function FacultyDetailsForm({ details, onChange, errorKeys }) {
+const SH_TUTORSHIP_OPTIONS = [
+  "I Year",
+  "Not applicable"
+];
+
+export default function FacultyDetailsForm({ details, onChange, errorKeys, department: propDepartment }) {
   const { session } = useAuth();
+  const currentDept = (propDepartment || session?.department || "").trim().toUpperCase();
+  const isSHDept = currentDept === "S&H" || currentDept.includes("SCIENCE");
+  const tutorshipOptions = isSHDept ? SH_TUTORSHIP_OPTIONS : ENGINEERING_TUTORSHIP_OPTIONS;
 
   return (
     <div className="card details-card">
@@ -43,7 +51,7 @@ export default function FacultyDetailsForm({ details, onChange, errorKeys }) {
                   <option value="" disabled>
                     Select Tutorship
                   </option>
-                  {TUTORSHIP_OPTIONS.map((opt) => (
+                  {tutorshipOptions.map((opt) => (
                     <option key={opt} value={opt}>
                       {opt}
                     </option>

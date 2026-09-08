@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS faculty (
   username      TEXT PRIMARY KEY,
   password_hash TEXT NOT NULL,
   name          TEXT NOT NULL,
-  department    TEXT NOT NULL CHECK (department IN ('Engineering', 'S&H')),
+  department    TEXT NOT NULL,
   designation   TEXT NOT NULL CHECK (designation IN (
                   'AP1', 'AP2', 'AP3', 'APSG', 'Associate Professor', 'Professor'
                 ))
@@ -82,13 +82,7 @@ CREATE TABLE IF NOT EXISTS submissions (
 );
 `);
 
-/* ---------------- Migration: faculty common-details columns ----------------
-   Added on top of the original submissions table. Faculty enter these
-   before the questions and they get saved alongside each submission, so
-   a historical submission stays fully readable on its own even if the
-   faculty's details change (or a question is edited) later. Uses
-   PRAGMA table_info + ALTER TABLE ADD COLUMN so this runs safely against
-   an existing database without ever dropping/recreating anything. */
+/* ---------------- Migration: faculty table & columns ---------------- */
 
 function ensureColumn(table, column, ddlType) {
   const cols = db.prepare(`PRAGMA table_info(${table})`).all();
@@ -113,6 +107,48 @@ for (const [column, ddlType] of FACULTY_DETAIL_COLUMNS) {
   ensureColumn("submissions", column, ddlType);
 }
 
+function migrateFacultyTableAndData() {
+  const tableSql = db.prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='faculty'").get()?.sql || "";
+  if (tableSql.includes("CHECK (department IN ('Engineering'")) {
+    db.exec(`
+      PRAGMA foreign_keys=OFF;
+      BEGIN TRANSACTION;
+      CREATE TABLE faculty_new (
+        username      TEXT PRIMARY KEY,
+        password_hash TEXT NOT NULL,
+        name          TEXT NOT NULL,
+        department    TEXT NOT NULL,
+        designation   TEXT NOT NULL CHECK (designation IN (
+                        'AP1', 'AP2', 'AP3', 'APSG', 'Associate Professor', 'Professor'
+                      ))
+      );
+      INSERT INTO faculty_new SELECT username, password_hash, name, department, designation FROM faculty;
+      DROP TABLE faculty;
+      ALTER TABLE faculty_new RENAME TO faculty;
+      COMMIT;
+      PRAGMA foreign_keys=ON;
+    `);
+  }
+
+  // Migrate any legacy 'Engineering' departments to their actual departments
+  db.prepare("UPDATE faculty SET department = 'CSE' WHERE username LIKE 'CSET%' OR username LIKE 'CSE%'").run();
+  db.prepare("UPDATE faculty SET department = 'ECE' WHERE username LIKE 'ECET%' OR username LIKE 'ECE%'").run();
+  db.prepare("UPDATE faculty SET department = 'EEE' WHERE username LIKE 'EEET%' OR username LIKE 'EEE%'").run();
+  db.prepare("UPDATE faculty SET department = 'Mechanical' WHERE username LIKE 'MECH%'").run();
+  db.prepare("UPDATE faculty SET department = 'Civil' WHERE username LIKE 'CIVIL%'").run();
+  db.prepare("UPDATE faculty SET department = 'S&H' WHERE username LIKE 'SNH%' OR username LIKE 'SH%'").run();
+  db.prepare("UPDATE faculty SET department = 'CSE' WHERE department = 'Engineering'").run();
+
+  // Sync submission departments with faculty departments
+  db.exec(`
+    UPDATE submissions 
+    SET department = (SELECT department FROM faculty WHERE faculty.username = submissions.username)
+    WHERE EXISTS (SELECT 1 FROM faculty WHERE faculty.username = submissions.username AND faculty.department != submissions.department);
+  `);
+}
+
+migrateFacultyTableAndData();
+
 /* ---------------- Seed (only runs once, on an empty DB) ---------------- */
 
 function seedIfEmpty() {
@@ -131,9 +167,13 @@ function seedIfEmpty() {
       "INSERT INTO faculty (username, password_hash, name, department, designation) VALUES (?, ?, ?, ?, ?)"
     );
     const sample = [
-      ["CSET031", "faculty123", "Dr. Ananya Rajan", "Engineering", "Associate Professor"],
-      ["CSET045", "faculty123", "Mr. Karthik Subramaniam", "Engineering", "AP2"],
-      ["CSET012", "faculty123", "Dr. Meera Nair", "Engineering", "Professor"],
+      ["CSET031", "faculty123", "Dr. Ananya Rajan", "CSE", "Associate Professor"],
+      ["CSET045", "faculty123", "Mr. Karthik Subramaniam", "CSE", "AP2"],
+      ["CSET012", "faculty123", "Dr. Meera Nair", "CSE", "Professor"],
+      ["ECET021", "faculty123", "Dr. Rajesh Kumar", "ECE", "Associate Professor"],
+      ["EEET015", "faculty123", "Ms. Sneha Verma", "EEE", "AP1"],
+      ["MECH005", "faculty123", "Mr. Vikram Singh", "Mechanical", "AP3"],
+      ["CIVIL003", "faculty123", "Dr. Suresh Patel", "Civil", "Professor"],
       ["SNH021", "faculty123", "Dr. Priya Venkatesh", "S&H", "Professor"],
       ["SNH008", "faculty123", "Ms. Divya Iyer", "S&H", "AP1"],
       ["SNH014", "faculty123", "Mr. Arjun Krishnan", "S&H", "APSG"],
