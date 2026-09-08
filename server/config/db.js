@@ -26,8 +26,22 @@ export async function getDbPool() {
     await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;`);
     await tempConnection.end();
   } catch (err) {
-    console.error("Warning: Could not check/create database:", err.message);
+    if (err.code === "ECONNREFUSED") {
+      console.error("\n========================================================");
+      console.error("❌ ERROR: Could not connect to MySQL server at " + DB_HOST + ":" + DB_PORT);
+      console.error("👉 Please make sure MySQL is started (e.g. start MySQL service or XAMPP MySQL).");
+      console.error("👉 Update credentials in server/.env if needed (DB_USER, DB_PASSWORD).");
+      console.error("========================================================\n");
+    } else if (err.code === "ER_ACCESS_DENIED_ERROR") {
+      console.error("\n========================================================");
+      console.error("❌ ERROR: MySQL Access Denied for user '" + DB_USER + "'.");
+      console.error("👉 Please set your correct MySQL password in server/.env (DB_PASSWORD=your_password).");
+      console.error("========================================================\n");
+    } else {
+      console.error("Warning: Could not check/create database:", err.message);
+    }
   }
+
 
   // 2. Create the connection pool
   pool = mysql.createPool({
