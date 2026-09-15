@@ -9,6 +9,8 @@ export default function FacultyHeader({ session, activeTab }) {
         return "Submissions";
       case "performance":
         return "Performance Analysis";
+      case "settings":
+        return "Theme Settings";
       case "appraisal":
       default:
         return "Faculty Appraisal";

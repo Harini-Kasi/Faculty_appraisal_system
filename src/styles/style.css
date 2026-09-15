@@ -1,31 +1,38 @@
 /* ============================================================
    Faculty Performance Appraisal System — Stylesheet
-   Design language: Institutional PDF Redesign with exact color #9B527F
+   Dynamic Theme Architecture (Default Brand Color: #1D95AD)
    ============================================================ */
 
 :root {
-  /* Exact primary theme color requested: #9B527F */
-  --primary: #9B527F;
-  --primary-dark: #83436A;
-  --primary-darker: #6B3556;
-  --primary-light: #F4EAF0;
-  --primary-very-light: #FAF4F8;
+  /* Dynamic primary theme color variables (Default: Teal #1D95AD) */
+  --primary-color: #1D95AD;
+  --primary: var(--primary-color);
+  --primary-dark: #167A8E;
+  --primary-darker: #105F6E;
+  --primary-hover: #178398;
+  --primary-light: #E8F5F8;
+  --primary-lighter: #F2F9FA;
+  --primary-very-light: #F2F9FA;
+  --primary-bg: #F7FAFC;
 
-  --bg: #FAF5F8;
+  --bg: #F8FAFC;
   --card: #FFFFFF;
-  --input-bg: #F5EEF2;
+  --input-bg: var(--primary-lighter);
 
-  --text: #261B22;
-  --text-secondary: #6B5C66;
-  --text-muted: #9C8D97;
+  --text: #1E293B;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
 
-  --border: #E8D9E3;
-  --border-strong: #D6C2CE;
+  --border: #D1E5EA;
+  --border-strong: #B2D6DE;
+  --primary-border: #D1E5EA;
+  --primary-border-strong: #B2D6DE;
+  --primary-text: #0E4B57;
 
-  --gold: #9B527F;
-  --gold-bg: #F4EAF0;
-  --gold-button: #9B527F;
-  --gold-button-hover: #83436A;
+  --gold: var(--primary-color);
+  --gold-bg: var(--primary-light);
+  --gold-button: var(--primary-color);
+  --gold-button-hover: var(--primary-dark);
 
   --success: #3F7D5B;
   --success-bg: #E9F5EE;
@@ -37,9 +44,13 @@
 
   --radius: 10px;
   --radius-sm: 8px;
-  --shadow-sm: 0 1px 3px rgba(155, 82, 127, 0.06);
-  --shadow-md: 0 4px 16px rgba(155, 82, 127, 0.1);
-  --shadow-lg: 0 12px 32px rgba(155, 82, 127, 0.15);
+  --primary-shadow-10: rgba(29, 149, 173, 0.08);
+  --primary-shadow-15: rgba(29, 149, 173, 0.12);
+  --primary-shadow-20: rgba(29, 149, 173, 0.18);
+
+  --shadow-sm: 0 1px 3px var(--primary-shadow-10);
+  --shadow-md: 0 4px 16px var(--primary-shadow-15);
+  --shadow-lg: 0 12px 32px var(--primary-shadow-20);
 }
 
 * {
@@ -88,7 +99,7 @@ input, select, textarea {
 }
 
 /* ============================================================
-   LOGIN PAGE (ORIGINAL LAYOUT & SIZING, ONLY COLOR CHANGED TO #9B527F)
+   LOGIN PAGE (DEFAULT FPA BRAND COLOR #1D95AD)
    ============================================================ */
 .login-page {
   min-height: 100vh;
@@ -99,8 +110,8 @@ input, select, textarea {
   overflow: hidden;
   padding: 2rem 1rem;
   background:
-    radial-gradient(circle at 12% 18%, rgba(155, 82, 127, 0.12), transparent 45%),
-    radial-gradient(circle at 88% 82%, rgba(155, 82, 127, 0.08), transparent 50%),
+    radial-gradient(circle at 12% 18%, var(--primary-shadow-15), transparent 45%),
+    radial-gradient(circle at 88% 82%, var(--primary-shadow-10), transparent 50%),
     var(--bg);
 }
 

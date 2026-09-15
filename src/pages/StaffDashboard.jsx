@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import FacultyHeader from "../components/FacultyHeader";
 import AppraisalTab from "../components/staff/AppraisalTab";
 import HistoryTab from "../components/staff/HistoryTab";
 import PerformanceTab from "../components/staff/PerformanceTab";
+import ThemeSettingsTab from "../components/ThemeSettingsTab";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import { api } from "../utils/api";
 
 export default function StaffDashboard() {
   const { session, logout } = useAuth();
+  const { loadUserTheme, resetTheme } = useTheme();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("appraisal");
   const [historyRefreshKey, setHistoryRefreshKey] = useState(0);
   const [showChangePassword, setShowChangePassword] = useState(false);
+
+  useEffect(() => {
+    if (session?.username) {
+      loadUserTheme(session.username);
+    }
+  }, [session?.username, loadUserTheme]);
 
   function handleTabChange(tab) {
     setActiveTab(tab);
@@ -30,6 +39,7 @@ export default function StaffDashboard() {
       // clear local session even if server call fails
     }
     logout();
+    resetTheme();
     navigate("/");
   }
 
@@ -58,6 +68,9 @@ export default function StaffDashboard() {
           </div>
           <div className={activeTab === "performance" ? "" : "hidden"}>
             <PerformanceTab />
+          </div>
+          <div className={activeTab === "settings" ? "" : "hidden"}>
+            <ThemeSettingsTab />
           </div>
         </div>
       </main>

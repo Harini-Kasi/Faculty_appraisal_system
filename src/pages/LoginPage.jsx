@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 import { useNotification } from "../context/NotificationContext";
 import { api } from "../utils/api";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { resetTheme, loadUserTheme } = useTheme();
   const { showNotification } = useNotification();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+
+  // Enforce default brand color (#1D95AD) on Login page
+  useEffect(() => {
+    resetTheme();
+  }, [resetTheme]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -41,6 +48,7 @@ export default function LoginPage() {
       const { token, role, user } = await api.login(uname, password);
 
       login(token, { role, ...user });
+      loadUserTheme(user.username);
 
       showNotification(`Welcome, ${user.name}.`, "success");
 

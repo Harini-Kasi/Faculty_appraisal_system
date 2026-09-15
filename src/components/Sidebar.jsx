@@ -1,5 +1,5 @@
 import React from "react";
-import { ClipboardList, Clock, TrendingUp, LogOut, KeyRound, ListChecks, BarChart2 } from "lucide-react";
+import { ClipboardList, Clock, TrendingUp, LogOut, KeyRound, ListChecks, BarChart2, Palette } from "lucide-react";
 
 export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChangePassword }) {
   const isAdmin = role === "admin";
@@ -78,6 +78,15 @@ export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChan
             </button>
           </>
         )}
+
+        <button
+          type="button"
+          className={`sidebar-link ${activeTab === "settings" ? "active" : ""}`}
+          onClick={() => onTabChange("settings")}
+        >
+          <Palette className="sidebar-icon" size={18} />
+          <span>Theme Settings</span>
+        </button>
 
         <div className="sidebar-divider" />
 

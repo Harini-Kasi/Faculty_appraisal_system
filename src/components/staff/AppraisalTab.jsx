@@ -257,7 +257,7 @@ export default function AppraisalTab({ onSubmitted }) {
       {!loading &&
         grouped.map((section) => (
           <div key={section.label} className="appraisal-section-block">
-            {/* Section Title Banner (#9B527F fill) */}
+            {/* Section Title Banner (Primary color fill) */}
             <div className="section-banner">
               <h3 className="section-banner-title">{section.label || "A. Self Appraisal"}</h3>
             </div>

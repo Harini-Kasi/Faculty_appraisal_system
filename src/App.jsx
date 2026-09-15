@@ -6,33 +6,36 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Notification from "./components/Notification";
 import { AuthProvider } from "./context/AuthContext";
 import { NotificationProvider } from "./context/NotificationContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
   return (
     <NotificationProvider>
       <AuthProvider>
-        <HashRouter>
-          <Notification />
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route
-              path="/admin"
-              element={
-                <ProtectedRoute role="admin">
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/staff"
-              element={
-                <ProtectedRoute role="faculty">
-                  <StaffDashboard />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </HashRouter>
+        <ThemeProvider>
+          <HashRouter>
+            <Notification />
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute role="admin">
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/staff"
+                element={
+                  <ProtectedRoute role="faculty">
+                    <StaffDashboard />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </HashRouter>
+        </ThemeProvider>
       </AuthProvider>
     </NotificationProvider>
   );

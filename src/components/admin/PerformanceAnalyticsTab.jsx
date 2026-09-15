@@ -503,7 +503,7 @@ export default function PerformanceAnalyticsTab() {
 
             {/* Breakdown Counts */}
             <div className="perf-card">
-              <div className="perf-card-icon" style={{ background: "#F5EDF2", color: "var(--primary)" }}>
+              <div className="perf-card-icon" style={{ background: "var(--primary-light)", color: "var(--primary-color)" }}>
                 <Sparkles size={24} />
               </div>
               <div className="perf-card-info">
