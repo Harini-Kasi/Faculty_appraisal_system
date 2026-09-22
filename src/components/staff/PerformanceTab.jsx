@@ -4,6 +4,7 @@ import { api } from "../../utils/api";
 import { useAuth } from "../../context/AuthContext";
 import { useNotification } from "../../context/NotificationContext";
 import { readDraft } from "../../utils/storage";
+import { getRecommendationsForQuestion } from "../../utils/recommendations";
 
 export default function PerformanceTab() {
   const { session } = useAuth();
@@ -146,18 +147,11 @@ export default function PerformanceTab() {
                   analysis.strengths.map((item) => (
                     <div key={item.index} className="analysis-item-card item-strength">
                       <div className="item-head">
-                        <span className="item-q-tag">Q{String(item.index).padStart(2, "0")}</span>
+                        <p className="item-title">
+                          Q{String(item.index).padStart(2, "0")} {item.text}
+                        </p>
                         <span className="score-pill pill-strength">Score: {item.score}</span>
                       </div>
-                      <p className="item-title">{item.text}</p>
-                      <div className="item-rating-text">
-                        <strong>Rating:</strong> {item.option}
-                      </div>
-                      {item.evidence && (
-                        <div className="item-evidence-box">
-                          <em>"{item.evidence}"</em>
-                        </div>
-                      )}
                     </div>
                   ))
                 )}
@@ -178,18 +172,11 @@ export default function PerformanceTab() {
                   analysis.moderate.map((item) => (
                     <div key={item.index} className="analysis-item-card item-moderate">
                       <div className="item-head">
-                        <span className="item-q-tag">Q{String(item.index).padStart(2, "0")}</span>
+                        <p className="item-title">
+                          Q{String(item.index).padStart(2, "0")} {item.text}
+                        </p>
                         <span className="score-pill pill-moderate">Score: {item.score}</span>
                       </div>
-                      <p className="item-title">{item.text}</p>
-                      <div className="item-rating-text">
-                        <strong>Rating:</strong> {item.option}
-                      </div>
-                      {item.evidence && (
-                        <div className="item-evidence-box">
-                          <em>"{item.evidence}"</em>
-                        </div>
-                      )}
                     </div>
                   ))
                 )}
@@ -210,18 +197,11 @@ export default function PerformanceTab() {
                   analysis.weaknesses.map((item) => (
                     <div key={item.index} className="analysis-item-card item-weakness">
                       <div className="item-head">
-                        <span className="item-q-tag">Q{String(item.index).padStart(2, "0")}</span>
+                        <p className="item-title">
+                          Q{String(item.index).padStart(2, "0")} {item.text}
+                        </p>
                         <span className="score-pill pill-weakness">Score: {item.score}</span>
                       </div>
-                      <p className="item-title">{item.text}</p>
-                      <div className="item-rating-text">
-                        <strong>Rating:</strong> {item.option}
-                      </div>
-                      {item.evidence && (
-                        <div className="item-evidence-box">
-                          <em>"{item.evidence}"</em>
-                        </div>
-                      )}
                     </div>
                   ))
                 )}
@@ -235,12 +215,46 @@ export default function PerformanceTab() {
               <Lightbulb size={22} style={{ color: "var(--primary)" }} />
               <h3>Development & Recommendations Summary</h3>
             </div>
-            <p className="rec-text">
-              Based on your appraisal responses, you have <strong>{analysis.strengths.length} key strengths</strong> (scores &gt; 3), <strong>{analysis.moderate.length} moderate performance criteria</strong> (score = 3), and <strong>{analysis.weaknesses.length} areas identified for improvement</strong> (scores &lt; 3).
-              {analysis.weaknesses.length > 0
-                ? " Focus on participating in specialized FDPs, MOOC courses, or industry collaborations to elevate your low-scoring criteria."
-                : " Excellent overall performance! Maintain your high standards across teaching and institutional contributions."}
-            </p>
+            <div className="rec-content" style={{ marginTop: "0.5rem" }}>
+              <p className="rec-text" style={{ marginBottom: "1rem" }}>
+                Based on your appraisal responses, you have <strong>{analysis.strengths.length} key {analysis.strengths.length === 1 ? "strength" : "strengths"}</strong>, <strong>{analysis.moderate.length} moderate performance {analysis.moderate.length === 1 ? "criterion" : "criteria"}</strong>, and <strong>{analysis.weaknesses.length} {analysis.weaknesses.length === 1 ? "area" : "areas"} identified for improvement</strong>.
+              </p>
+
+              {/* TARGETED AREAS FOR FOCUS & IMPROVEMENT (Weaknesses Alone: Score < 3) */}
+              {analysis.weaknesses.length > 0 ? (
+                <div className="rec-section rec-section-weakness">
+                  <h4 style={{ color: "var(--error)", fontSize: "0.95rem", fontWeight: 700, marginBottom: "0.68rem" }}>
+                    Targeted Areas for Focus &amp; Improvement:
+                  </h4>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                    {analysis.weaknesses.map((w) => {
+                      const recs = getRecommendationsForQuestion(w.text, w.score);
+                      return (
+                        <div key={w.index} className="rec-item-card" style={{ background: "rgba(239, 68, 68, 0.04)", borderLeft: "3px solid var(--error)", padding: "0.85rem 1.1rem", borderRadius: "0 8px 8px 0" }}>
+                          <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--text)", marginBottom: "0.4rem" }}>
+                            • Q{String(w.index).padStart(2, "0")} {w.text} <span style={{ fontWeight: 600, color: "var(--error)", fontSize: "0.82rem" }}>(Score: {w.score})</span>
+                          </div>
+                          <ul style={{ margin: 0, paddingLeft: "1.35rem", color: "var(--text)", fontSize: "0.85rem", lineHeight: "1.5" }}>
+                            {recs.map((r, i) => (
+                              <li key={i} style={{ marginBottom: "0.25rem" }}>{r}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="rec-no-weakness-box" style={{ background: "rgba(16, 185, 129, 0.04)", borderLeft: "3px solid var(--success)", padding: "0.85rem 1.1rem", borderRadius: "0 8px 8px 0" }}>
+                  <strong style={{ color: "var(--success)", display: "block", marginBottom: "0.25rem" }}>
+                    Great job! No areas identified for improvement.
+                  </strong>
+                  <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--text)" }}>
+                    All evaluated criteria scored 3 or above. Maintain your high standards across teaching, research, and institutional contributions.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

@@ -806,7 +806,6 @@ export default function PerformanceAnalyticsTab() {
                         <thead>
                           <tr>
                             <th>Criterion / Category</th>
-                            <th>Faculty Rating</th>
                             <th>Faculty Score %</th>
                             <th>Dept Avg %</th>
                             <th>Variance vs Dept</th>
@@ -816,9 +815,6 @@ export default function PerformanceAnalyticsTab() {
                           {individualAnalysis.categoryComparison.map((cat, i) => (
                             <tr key={i}>
                               <td className="font-weight-bold">{cat.title}</td>
-                              <td>
-                                <span className="rating-chip">{cat.optionText}</span>
-                              </td>
                               <td>
                                 <span className="score-bold">{cat.facultyPct}%</span>
                               </td>
@@ -853,9 +849,6 @@ export default function PerformanceAnalyticsTab() {
                                   <span className="item-title">{item.title}</span>
                                   <span className="score-pill pill-strength">{item.facultyPct}%</span>
                                 </div>
-                                <div className="item-rating-text">
-                                  Rating: <strong>{item.optionText}</strong>
-                                </div>
                               </div>
                             ))
                           )}
@@ -878,7 +871,7 @@ export default function PerformanceAnalyticsTab() {
                                   <span className="score-pill pill-weakness">{item.facultyPct}%</span>
                                 </div>
                                 <div className="item-rating-text">
-                                  Rating: <strong>{item.optionText}</strong> (Dept Avg: {item.deptAvgPct}%)
+                                  Dept Avg: <strong>{item.deptAvgPct}%</strong>
                                 </div>
                               </div>
                             ))
