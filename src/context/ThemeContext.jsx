@@ -10,7 +10,9 @@ import {
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
-  const [themeColor, setThemeColorState] = useState(DEFAULT_THEME_COLOR);
+  const [themeColor, setThemeColorState] = useState(() => {
+    return localStorage.getItem("fpaThemeColor") || DEFAULT_THEME_COLOR;
+  });
   const [currentUser, setCurrentUser] = useState(null);
 
   // Apply theme dynamically whenever themeColor state changes
@@ -40,12 +42,13 @@ export function ThemeProvider({ children }) {
   };
 
   /**
-   * Resets theme back to default FPA brand color (#1D95AD) — used on Login page & logout.
+   * Resets theme state to current saved localStorage theme color or default.
    */
   const resetTheme = () => {
     setCurrentUser(null);
-    setThemeColorState(DEFAULT_THEME_COLOR);
-    resetToDefaultTheme();
+    const saved = localStorage.getItem("fpaThemeColor") || DEFAULT_THEME_COLOR;
+    setThemeColorState(saved);
+    applyTheme(saved);
   };
 
   return (

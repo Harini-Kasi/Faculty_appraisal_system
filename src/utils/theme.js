@@ -6,15 +6,26 @@
 
 export const DEFAULT_THEME_COLOR = "#1D95AD";
 
-export const PRESET_THEME_COLORS = [
-  { name: "Teal", hex: "#1D95AD" },
-  { name: "Blue", hex: "#2563EB" },
-  { name: "Purple", hex: "#83529B" },
-  { name: "Pink", hex: "#9B527F" },
-  { name: "Red", hex: "#D32F2F" },
-  { name: "Orange", hex: "#EA580C" },
-  { name: "Green", hex: "#1B949F" },
-];
+export const PRESET_THEME_COLORS = [];
+
+/**
+ * Validates whether string is a valid 6-character hex color (#RRGGBB or RRGGBB)
+ */
+export function isValidHex(hex) {
+  if (!hex) return false;
+  const clean = hex.trim().startsWith("#") ? hex.trim() : `#${hex.trim()}`;
+  return /^#[0-9A-Fa-f]{6}$/.test(clean);
+}
+
+/**
+ * Normalizes hex string into uppercase #RRGGBB format
+ */
+export function formatHex(hex) {
+  if (!hex) return DEFAULT_THEME_COLOR;
+  let clean = hex.trim();
+  if (!clean.startsWith("#")) clean = `#${clean}`;
+  return clean.toUpperCase();
+}
 
 /**
  * Converts Hex string (#RRGGBB or #RGB) to RGB object {r, g, b}
@@ -79,7 +90,7 @@ export function rgbToHsl(r, g, b) {
  * Generates derived CSS variable object from a primary hex color.
  */
 export function generateThemeVariables(primaryHex) {
-  const hex = primaryHex && /^#[0-9A-Fa-f]{6}$/.test(primaryHex) ? primaryHex : DEFAULT_THEME_COLOR;
+  const hex = isValidHex(primaryHex) ? formatHex(primaryHex) : DEFAULT_THEME_COLOR;
   const { r, g, b } = hexToRgb(hex);
   const { h, s, l } = rgbToHsl(r, g, b);
 
@@ -89,6 +100,10 @@ export function generateThemeVariables(primaryHex) {
   const hoverL = Math.max(0, l - 8);
   const textL = Math.min(32, Math.max(15, l - 25));
   const textS = Math.min(65, Math.max(25, s * 0.75));
+
+  // Compute text contrast on primary background button
+  const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  const btnTextColor = luminance > 0.58 ? "#0F172A" : "#FFFFFF";
 
   const lightS = Math.min(80, Math.max(15, s * 0.5));
   const lightL = 91;
@@ -118,6 +133,7 @@ export function generateThemeVariables(primaryHex) {
     "--primary-border": `hsl(${h}, ${borderS}%, ${borderL}%)`,
     "--primary-border-strong": `hsl(${h}, ${borderStrongS}%, ${borderStrongL}%)`,
     "--primary-text": `hsl(${h}, ${Math.round(textS)}%, ${Math.round(textL)}%)`,
+    "--btn-primary-text": btnTextColor,
     "--input-bg": `hsl(${h}, ${lighterS}%, ${lighterL}%)`,
     "--primary-shadow-10": `rgba(${r}, ${g}, ${b}, 0.10)`,
     "--primary-shadow-15": `rgba(${r}, ${g}, ${b}, 0.15)`,

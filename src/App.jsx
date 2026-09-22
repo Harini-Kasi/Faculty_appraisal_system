@@ -1,5 +1,6 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import ThemeSelectionPage from "./pages/ThemeSelectionPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import StaffDashboard from "./pages/StaffDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -17,6 +18,15 @@ export default function App() {
             <Notification />
             <Routes>
               <Route path="/" element={<LoginPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/theme-selection"
+                element={
+                  <ProtectedRoute>
+                    <ThemeSelectionPage />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/admin"
                 element={

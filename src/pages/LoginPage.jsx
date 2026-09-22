@@ -16,7 +16,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
-  // Enforce default brand color (#1D95AD) on Login page
+  // Enforce standard default brand color (#1D95AD) on Login Page
   useEffect(() => {
     resetTheme();
   }, [resetTheme]);
@@ -43,16 +43,23 @@ export default function LoginPage() {
     setSubmitting(true);
 
     try {
-      // The server authenticates the credentials and determines the
-      // role, department, and designation.
+      // The server authenticates credentials and returns token & user details
       const { token, role, user } = await api.login(uname, password);
 
       login(token, { role, ...user });
-      loadUserTheme(user.username);
-
       showNotification(`Welcome, ${user.name}.`, "success");
 
-      navigate(role === "admin" ? "/admin" : "/staff");
+      // Check if logged-in user already has a saved custom theme
+      const userThemeKey = `fpaThemeColor_${user.username}`;
+      const savedUserTheme = localStorage.getItem(userThemeKey);
+
+      if (savedUserTheme) {
+        loadUserTheme(user.username);
+        navigate(role === "admin" ? "/admin" : "/staff");
+      } else {
+        // First-time theme selection AFTER successful login
+        navigate("/theme-selection");
+      }
     } catch (err) {
       setErrors({ password: true });
       showNotification(

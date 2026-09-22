@@ -55,67 +55,6 @@ export default function ThemeSettingsTab() {
 
         <hr style={{ border: "none", borderTop: "1px solid var(--primary-border)", margin: "1.5rem 0" }} />
 
-        {/* Preset Colors Grid */}
-        <div style={{ marginBottom: "2rem" }}>
-          <h3 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "0.85rem", color: "var(--text)" }}>
-            Preset Professional Colors
-          </h3>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))",
-              gap: "1rem",
-            }}
-          >
-            {PRESET_THEME_COLORS.map((color) => {
-              const isSelected = themeColor.toLowerCase() === color.hex.toLowerCase();
-              return (
-                <button
-                  key={color.name}
-                  type="button"
-                  onClick={() => handleSelectColor(color.hex)}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    padding: "1rem 0.75rem",
-                    borderRadius: "10px",
-                    border: isSelected
-                      ? `2px solid var(--primary-color)`
-                      : "1px solid var(--border)",
-                    background: isSelected ? "var(--primary-lighter)" : "var(--card)",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease",
-                    boxShadow: isSelected ? "var(--shadow-md)" : "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "38px",
-                      height: "38px",
-                      borderRadius: "50%",
-                      backgroundColor: color.hex,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-                    }}
-                  >
-                    {isSelected && <Check size={20} color="#FFFFFF" strokeWidth={3} />}
-                  </div>
-                  <span style={{ fontSize: "0.88rem", fontWeight: "600", color: "var(--text)" }}>
-                    {color.name}
-                  </span>
-                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontFamily: "monospace" }}>
-                    {color.hex}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Custom Color Picker */}
         <div style={{ marginBottom: "2.5rem" }}>
           <h3 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "0.85rem", color: "var(--text)" }}>

@@ -4,8 +4,12 @@ import { useAuth } from "../context/AuthContext";
 export default function ProtectedRoute({ role, children }) {
   const { session } = useAuth();
 
-  if (!session || session.role !== role) {
-    return <Navigate to="/" replace />;
+  if (!session) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (role && session.role !== role) {
+    return <Navigate to="/login" replace />;
   }
 
   return children;
