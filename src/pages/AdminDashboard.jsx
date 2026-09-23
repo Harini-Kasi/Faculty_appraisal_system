@@ -4,7 +4,6 @@ import Sidebar from "../components/Sidebar";
 import QuestionBuilderTab from "../components/admin/QuestionBuilderTab";
 import SubmissionsTab from "../components/admin/SubmissionsTab";
 import PerformanceAnalyticsTab from "../components/admin/PerformanceAnalyticsTab";
-import ThemeSettingsTab from "../components/ThemeSettingsTab";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
@@ -14,7 +13,7 @@ export default function AdminDashboard() {
   const { session, logout } = useAuth();
   const { loadUserTheme, resetTheme } = useTheme();
   const navigate = useNavigate();
-  const [activeView, setActiveView] = useState("builder"); // 'builder' | 'submissions' | 'analytics' | 'settings'
+  const [activeView, setActiveView] = useState("builder"); // 'builder' | 'submissions' | 'analytics'
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [submissionsRefreshKey, setSubmissionsRefreshKey] = useState(0);
 
@@ -48,8 +47,6 @@ export default function AdminDashboard() {
         return "Faculty Submissions";
       case "analytics":
         return "Performance Analytics";
-      case "settings":
-        return "Theme Settings";
       case "builder":
       default:
         return "Question Builder";
@@ -80,9 +77,6 @@ export default function AdminDashboard() {
           </div>
           <div className={activeView === "analytics" ? "" : "hidden"}>
             <PerformanceAnalyticsTab />
-          </div>
-          <div className={activeView === "settings" ? "" : "hidden"}>
-            <ThemeSettingsTab />
           </div>
         </div>
       </main>

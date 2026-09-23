@@ -1,17 +1,23 @@
 import React from "react";
-import { ClipboardList, Clock, TrendingUp, LogOut, KeyRound, ListChecks, BarChart2, Palette } from "lucide-react";
+import { ClipboardList, Clock, TrendingUp, LogOut, KeyRound, ListChecks, BarChart2 } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
+import { isLightColor } from "../utils/theme";
 
 export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChangePassword }) {
   const isAdmin = role === "admin";
+  const { themeColor } = useTheme();
+  const isLight = isLightColor(themeColor);
 
   return (
     <aside className="app-sidebar">
       <div className="sidebar-brand">
-        <img
-          src="/exact-logo.png"
-          alt="Faculty Performance Appraisal System Logo"
-          className="sidebar-exact-logo"
-        />
+        <div className="sidebar-logo-badge">
+          <img
+            src="/exact-logo.png"
+            alt="National Engineering College Logo"
+            className="sidebar-exact-logo"
+          />
+        </div>
         <div className="brand-text">
           <h1 className="brand-name">FPA</h1>
           <span className="brand-tagline">Faculty Performance<br />Appraisal System</span>
@@ -78,15 +84,6 @@ export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChan
             </button>
           </>
         )}
-
-        <button
-          type="button"
-          className={`sidebar-link ${activeTab === "settings" ? "active" : ""}`}
-          onClick={() => onTabChange("settings")}
-        >
-          <Palette className="sidebar-icon" size={18} />
-          <span>Theme Settings</span>
-        </button>
 
         <div className="sidebar-divider" />
 

@@ -55,6 +55,44 @@ export default function ThemeSettingsTab() {
 
         <hr style={{ border: "none", borderTop: "1px solid var(--primary-border)", margin: "1.5rem 0" }} />
 
+        {/* Preset Theme Swatches */}
+        <div style={{ marginBottom: "2rem" }}>
+          <h3 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "0.85rem", color: "var(--text)" }}>
+            Preset Theme Palettes
+          </h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+            {PRESET_THEME_COLORS.map((preset) => {
+              const isActive = themeColor.toUpperCase() === preset.hex.toUpperCase();
+              return (
+                <button
+                  key={preset.name}
+                  type="button"
+                  onClick={() => handleSelectColor(preset.hex)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.45rem",
+                    padding: "0.55rem 1rem",
+                    borderRadius: "8px",
+                    border: isActive ? "2px solid var(--text)" : "1px solid var(--border)",
+                    background: preset.hex,
+                    color: "#FFFFFF",
+                    fontWeight: "600",
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    boxShadow: isActive ? "0 2px 8px rgba(0,0,0,0.2)" : "none",
+                  }}
+                >
+                  {isActive && <Check size={16} />}
+                  {preset.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <hr style={{ border: "none", borderTop: "1px solid var(--primary-border)", margin: "1.5rem 0" }} />
+
         {/* Custom Color Picker */}
         <div style={{ marginBottom: "2.5rem" }}>
           <h3 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "0.85rem", color: "var(--text)" }}>
@@ -92,7 +130,7 @@ export default function ThemeSettingsTab() {
               type="text"
               value={customHex}
               onChange={handleCustomHexChange}
-              placeholder="#1D95AD"
+              placeholder="#0B7279"
               maxLength={7}
               style={{
                 flex: 1,
@@ -141,7 +179,7 @@ export default function ThemeSettingsTab() {
             {/* Sidebar Preview */}
             <div
               style={{
-                background: "var(--primary-color)",
+                background: "var(--sidebar-bg, var(--primary))",
                 borderRadius: "10px",
                 padding: "1.25rem 1rem",
                 color: "#FFFFFF",
@@ -150,7 +188,10 @@ export default function ThemeSettingsTab() {
                 gap: "1rem",
               }}
             >
-              <div style={{ fontWeight: "700", fontSize: "1.1rem" }}>FPA Sidebar</div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <img src="/exact-logo.png" alt="Logo" style={{ height: "28px", width: "auto" }} />
+                <span style={{ color: "#FFFFFF", fontWeight: "800", fontSize: "0.95rem" }}>FPA</span>
+              </div>
               <div
                 style={{
                   background: "rgba(255, 255, 255, 0.2)",

@@ -49,17 +49,8 @@ export default function LoginPage() {
       login(token, { role, ...user });
       showNotification(`Welcome, ${user.name}.`, "success");
 
-      // Check if logged-in user already has a saved custom theme
-      const userThemeKey = `fpaThemeColor_${user.username}`;
-      const savedUserTheme = localStorage.getItem(userThemeKey);
-
-      if (savedUserTheme) {
-        loadUserTheme(user.username);
-        navigate(role === "admin" ? "/admin" : "/staff");
-      } else {
-        // First-time theme selection AFTER successful login
-        navigate("/theme-selection");
-      }
+      // Flow: LOGIN -> SUCCESSFUL LOGIN -> CHOOSE YOUR THEME
+      navigate("/theme-selection");
     } catch (err) {
       setErrors({ password: true });
       showNotification(
@@ -72,19 +63,7 @@ export default function LoginPage() {
   }
 
   return (
-    <section
-      id="loginPage"
-      className="login-page"
-      style={{
-        backgroundImage: "url('/login-background.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-      }}
-    >
-      <div className="ledger-band"></div>
-
+    <section id="loginPage" className="login-page">
       <div className="login-card">
         <div className="login-brand">
           <div className="brand-mark">FPA</div>
@@ -135,7 +114,7 @@ export default function LoginPage() {
           <button
             type="submit"
             id="loginBtn"
-            className="btn-primary btn-block"
+            className="btn-primary btn-block btn-login-submit"
             disabled={submitting}
           >
             {submitting ? "Signing In…" : "Sign In"}

@@ -5,7 +5,6 @@ import FacultyHeader from "../components/FacultyHeader";
 import AppraisalTab from "../components/staff/AppraisalTab";
 import HistoryTab from "../components/staff/HistoryTab";
 import PerformanceTab from "../components/staff/PerformanceTab";
-import ThemeSettingsTab from "../components/ThemeSettingsTab";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
@@ -68,9 +67,6 @@ export default function StaffDashboard() {
           </div>
           <div className={activeTab === "performance" ? "" : "hidden"}>
             <PerformanceTab />
-          </div>
-          <div className={activeTab === "settings" ? "" : "hidden"}>
-            <ThemeSettingsTab />
           </div>
         </div>
       </main>

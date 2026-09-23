@@ -4,9 +4,17 @@
    and applies CSS custom properties dynamically to :root.
    ============================================================ */
 
-export const DEFAULT_THEME_COLOR = "#1D95AD";
+export const DEFAULT_THEME_COLOR = "#0B7279";
 
-export const PRESET_THEME_COLORS = [];
+export const PRESET_THEME_COLORS = [
+  { name: "Teal", hex: "#0B7279" },
+  { name: "Forest Green", hex: "#0B5D55" },
+  { name: "Navy", hex: "#1E3A8A" },
+  { name: "Royal Blue", hex: "#2563EB" },
+  { name: "Purple", hex: "#7C3AED" },
+  { name: "Burgundy", hex: "#7A263A" },
+  { name: "Slate", hex: "#475569" },
+];
 
 /**
  * Validates whether string is a valid 6-character hex color (#RRGGBB or RRGGBB)
@@ -36,7 +44,7 @@ export function hexToRgb(hex) {
     cleanHex = cleanHex.split("").map((c) => c + c).join("");
   }
   if (cleanHex.length !== 6) {
-    return { r: 29, g: 149, b: 173 }; // Fallback to #1D95AD
+    return { r: 11, g: 114, b: 121 }; // Fallback to #0B7279
   }
   const num = parseInt(cleanHex, 16);
   return {
@@ -87,6 +95,16 @@ export function rgbToHsl(r, g, b) {
 }
 
 /**
+ * Checks if a hex color is light based on perceived relative luminance.
+ */
+export function isLightColor(hex) {
+  if (!hex || !isValidHex(hex)) return false;
+  const { r, g, b } = hexToRgb(formatHex(hex));
+  const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  return luminance > 0.45;
+}
+
+/**
  * Generates derived CSS variable object from a primary hex color.
  */
 export function generateThemeVariables(primaryHex) {
@@ -104,6 +122,22 @@ export function generateThemeVariables(primaryHex) {
   // Compute text contrast on primary background button
   const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
   const btnTextColor = luminance > 0.58 ? "#0F172A" : "#FFFFFF";
+
+  // Dynamic Sidebar Contrast calculation:
+  // Use the selected theme color directly for the sidebar background.
+  // Adapt logo badge background, brand text, and link colors automatically
+  // depending on whether the chosen theme is light or dark.
+  const isLightSidebar = luminance > 0.45 || l > 48;
+  const sidebarBg = hex;
+  const sidebarTextColor = isLightSidebar ? "#0F172A" : "#FFFFFF";
+  const sidebarTaglineColor = isLightSidebar ? "#334155" : "rgba(255, 255, 255, 0.9)";
+  // Clean white badge container to guarantee full-color reference logo legibility on all theme sidebars
+  const logoBadgeBg = "#FFFFFF";
+  const logoBadgeBorder = isLightSidebar ? "rgba(15, 23, 42, 0.16)" : "rgba(255, 255, 255, 0.35)";
+  const sidebarLinkColor = isLightSidebar ? "#1E293B" : "rgba(255, 255, 255, 0.9)";
+  const sidebarLinkHover = isLightSidebar ? "rgba(15, 23, 42, 0.08)" : "rgba(255, 255, 255, 0.15)";
+  const sidebarLinkActiveBg = isLightSidebar ? "rgba(15, 23, 42, 0.15)" : "rgba(255, 255, 255, 0.22)";
+  const sidebarLinkActiveColor = isLightSidebar ? "#0F172A" : "#FFFFFF";
 
   const lightS = Math.min(80, Math.max(15, s * 0.5));
   const lightL = 91;
@@ -133,6 +167,15 @@ export function generateThemeVariables(primaryHex) {
     "--primary-border": `hsl(${h}, ${borderS}%, ${borderL}%)`,
     "--primary-border-strong": `hsl(${h}, ${borderStrongS}%, ${borderStrongL}%)`,
     "--primary-text": `hsl(${h}, ${Math.round(textS)}%, ${Math.round(textL)}%)`,
+    "--sidebar-bg": sidebarBg,
+    "--sidebar-text-color": sidebarTextColor,
+    "--sidebar-tagline-color": sidebarTaglineColor,
+    "--sidebar-logo-badge-bg": logoBadgeBg,
+    "--sidebar-logo-badge-border": logoBadgeBorder,
+    "--sidebar-link-color": sidebarLinkColor,
+    "--sidebar-link-hover": sidebarLinkHover,
+    "--sidebar-link-active-bg": sidebarLinkActiveBg,
+    "--sidebar-link-active-color": sidebarLinkActiveColor,
     "--btn-primary-text": btnTextColor,
     "--input-bg": `hsl(${h}, ${lighterS}%, ${lighterL}%)`,
     "--primary-shadow-10": `rgba(${r}, ${g}, ${b}, 0.10)`,
