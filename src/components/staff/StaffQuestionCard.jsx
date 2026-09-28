@@ -1,9 +1,17 @@
 import React from "react";
 
-export default function StaffQuestionCard({ question, index, answer, onSelectChange, onEvidenceChange, hasError }) {
-  const selectedOption = question.options.find((o) => String(o.id) === String(answer.optionId));
+export default function StaffQuestionCard({
+  question,
+  index,
+  answer,
+  onSelectChange,
+  onEvidenceChange,
+  hasError,
+  disabled = false,
+}) {
+  const selectedOption = question.options?.find((o) => String(o.id) === String(answer?.optionId));
   const selectedScore = selectedOption ? String(selectedOption.score) : "0";
-  const maxScore = Math.max(...question.options.map((o) => o.score), 0);
+  const maxScore = question.options?.length ? Math.max(...question.options.map((o) => o.score), 0) : 0;
 
   return (
     <div className={`pdf-question-card ${hasError ? "has-error" : ""}`} data-qid={question.id}>
@@ -16,13 +24,14 @@ export default function StaffQuestionCard({ question, index, answer, onSelectCha
           <label className="col-label">Performance Rating</label>
           <select
             className="input-styled pdf-select"
-            value={answer.optionId}
-            onChange={(e) => onSelectChange(question.id, e.target.value)}
+            value={answer?.optionId || ""}
+            disabled={disabled}
+            onChange={(e) => onSelectChange && onSelectChange(question.id, e.target.value)}
           >
             <option value="" disabled>
               Select Rating
             </option>
-            {question.options.map((opt) => (
+            {question.options?.map((opt) => (
               <option key={opt.id} value={opt.id}>
                 {opt.text}
               </option>
@@ -43,8 +52,10 @@ export default function StaffQuestionCard({ question, index, answer, onSelectCha
             type="text"
             className="input-styled pdf-evidence-input"
             placeholder="Enter evidence details here..."
-            value={answer.evidence}
-            onChange={(e) => onEvidenceChange(question.id, e.target.value)}
+            value={answer?.evidence || ""}
+            disabled={disabled}
+            readOnly={disabled}
+            onChange={(e) => onEvidenceChange && onEvidenceChange(question.id, e.target.value)}
           />
         </div>
       </div>

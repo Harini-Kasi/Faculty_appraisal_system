@@ -1,12 +1,9 @@
 import React from "react";
-import { ClipboardList, Clock, TrendingUp, LogOut, KeyRound, ListChecks, BarChart2 } from "lucide-react";
+import { ClipboardList, Clock, TrendingUp, LogOut, KeyRound, ListChecks, BarChart2, Users, UserCheck, ShieldCheck, Award } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
-import { isLightColor } from "../utils/theme";
 
 export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChangePassword }) {
-  const isAdmin = role === "admin";
   const { themeColor } = useTheme();
-  const isLight = isLightColor(themeColor);
 
   return (
     <aside className="app-sidebar">
@@ -25,7 +22,8 @@ export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChan
       </div>
 
       <nav className="sidebar-nav">
-        {isAdmin ? (
+        {/* Admin Navigation */}
+        {role === "admin" && (
           <>
             <button
               type="button"
@@ -47,6 +45,15 @@ export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChan
 
             <button
               type="button"
+              className={`sidebar-link ${activeTab === "faculty_mgmt" ? "active" : ""}`}
+              onClick={() => onTabChange("faculty_mgmt")}
+            >
+              <Users className="sidebar-icon" size={18} />
+              <span>Faculty Management</span>
+            </button>
+
+            <button
+              type="button"
               className={`sidebar-link ${activeTab === "analytics" ? "active" : ""}`}
               onClick={() => onTabChange("analytics")}
             >
@@ -54,7 +61,147 @@ export default function Sidebar({ role, activeTab, onTabChange, onLogout, onChan
               <span>Performance Analytics</span>
             </button>
           </>
-        ) : (
+        )}
+
+        {/* HOD Navigation */}
+        {role === "hod" && (
+          <>
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "appraisal" ? "active" : ""}`}
+              onClick={() => onTabChange("appraisal")}
+            >
+              <ClipboardList className="sidebar-icon" size={18} />
+              <span>Self Appraisal</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "hod_eval" ? "active" : ""}`}
+              onClick={() => onTabChange("hod_eval")}
+            >
+              <UserCheck className="sidebar-icon" size={18} />
+              <span>HOD Evaluation</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "history" ? "active" : ""}`}
+              onClick={() => onTabChange("history")}
+            >
+              <Clock className="sidebar-icon" size={18} />
+              <span>Submissions</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "performance" ? "active" : ""}`}
+              onClick={() => onTabChange("performance")}
+            >
+              <TrendingUp className="sidebar-icon" size={18} />
+              <span>Performance Analysis</span>
+            </button>
+          </>
+        )}
+
+        {/* Principal Navigation */}
+        {role === "principal" && (
+          <>
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "principal_eval" ? "active" : ""}`}
+              onClick={() => onTabChange("principal_eval")}
+            >
+              <Award className="sidebar-icon" size={18} />
+              <span>Principal Evaluation</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "submissions" ? "active" : ""}`}
+              onClick={() => onTabChange("submissions")}
+            >
+              <ListChecks className="sidebar-icon" size={18} />
+              <span>Submissions Ledger</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "analytics" ? "active" : ""}`}
+              onClick={() => onTabChange("analytics")}
+            >
+              <BarChart2 className="sidebar-icon" size={18} />
+              <span>Performance Analytics</span>
+            </button>
+          </>
+        )}
+
+        {/* Reviewer / RAdmin Navigation */}
+        {role === "radmin" && (
+          <>
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "reviewer_eval" ? "active" : ""}`}
+              onClick={() => onTabChange("reviewer_eval")}
+            >
+              <Award className="sidebar-icon" size={18} />
+              <span>Reviewer Evaluation</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "submissions" ? "active" : ""}`}
+              onClick={() => onTabChange("submissions")}
+            >
+              <ListChecks className="sidebar-icon" size={18} />
+              <span>Submissions Ledger</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "analytics" ? "active" : ""}`}
+              onClick={() => onTabChange("analytics")}
+            >
+              <BarChart2 className="sidebar-icon" size={18} />
+              <span>Performance Analytics</span>
+            </button>
+          </>
+        )}
+
+        {/* Dean / VAdmin Navigation */}
+        {role === "vadmin" && (
+          <>
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "dean_verify" ? "active" : ""}`}
+              onClick={() => onTabChange("dean_verify")}
+            >
+              <ShieldCheck className="sidebar-icon" size={18} />
+              <span>Dean Verification</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "submissions" ? "active" : ""}`}
+              onClick={() => onTabChange("submissions")}
+            >
+              <ListChecks className="sidebar-icon" size={18} />
+              <span>Submissions Ledger</span>
+            </button>
+
+            <button
+              type="button"
+              className={`sidebar-link ${activeTab === "analytics" ? "active" : ""}`}
+              onClick={() => onTabChange("analytics")}
+            >
+              <BarChart2 className="sidebar-icon" size={18} />
+              <span>Performance Analytics</span>
+            </button>
+          </>
+        )}
+
+        {/* Faculty Navigation */}
+        {(!role || role === "faculty") && (
           <>
             <button
               type="button"

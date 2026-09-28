@@ -25,15 +25,54 @@ const SH_TUTORSHIP_OPTIONS = [
   "Not applicable"
 ];
 
-export default function FacultyDetailsForm({ details, onChange, errorKeys, department: propDepartment }) {
+export default function FacultyDetailsForm({
+  details,
+  onChange,
+  errorKeys,
+  department: propDepartment,
+  disabled = false,
+  readOnly = false,
+  facultyInfo = null,
+}) {
   const { session } = useAuth();
-  const currentDept = (propDepartment || session?.department || "").trim().toUpperCase();
+  const currentDept = (propDepartment || facultyInfo?.department || session?.department || "").trim().toUpperCase();
   const isSHDept = currentDept === "S&H" || currentDept.includes("SCIENCE");
   const tutorshipOptions = isSHDept ? SH_TUTORSHIP_OPTIONS : ENGINEERING_TUTORSHIP_OPTIONS;
 
   return (
     <div className="card details-card">
-      <h3 className="details-card-title">Faculty Details</h3>
+      <h3 className="details-card-title">Faculty Information</h3>
+
+      {facultyInfo && (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "1rem",
+            marginBottom: "1.25rem",
+            paddingBottom: "1rem",
+            borderBottom: "1px solid var(--border-color)",
+          }}
+        >
+          <div className="field-group">
+            <label>User ID / Staff ID</label>
+            <input className="input-styled" value={facultyInfo.username || ""} disabled readOnly />
+          </div>
+          <div className="field-group">
+            <label>Faculty Name</label>
+            <input className="input-styled" value={facultyInfo.name || ""} disabled readOnly />
+          </div>
+          <div className="field-group">
+            <label>Department</label>
+            <input className="input-styled" value={facultyInfo.department || ""} disabled readOnly />
+          </div>
+          <div className="field-group">
+            <label>Designation</label>
+            <input className="input-styled" value={facultyInfo.designation || ""} disabled readOnly />
+          </div>
+        </div>
+      )}
+
       <div className="faculty-details-grid">
         {FIELDS.map((field) => {
           const isTutorship = field.key === "tutorship";
@@ -46,7 +85,8 @@ export default function FacultyDetailsForm({ details, onChange, errorKeys, depar
                   id={`fd-${field.key}`}
                   className={`input-styled ${errorKeys?.has(field.key) ? "input-error" : ""}`}
                   value={details[field.key] || ""}
-                  onChange={(e) => onChange(field.key, e.target.value)}
+                  disabled={disabled || readOnly}
+                  onChange={(e) => onChange && onChange(field.key, e.target.value)}
                 >
                   <option value="" disabled>
                     Select Tutorship
@@ -65,7 +105,9 @@ export default function FacultyDetailsForm({ details, onChange, errorKeys, depar
                   step={field.type === "number" ? "1" : undefined}
                   className={`input-styled ${errorKeys?.has(field.key) ? "input-error" : ""}`}
                   value={details[field.key] || ""}
-                  onChange={(e) => onChange(field.key, e.target.value)}
+                  disabled={disabled || readOnly}
+                  readOnly={readOnly}
+                  onChange={(e) => onChange && onChange(field.key, e.target.value)}
                   placeholder={field.placeholder}
                 />
               )}

@@ -8,8 +8,11 @@ export default function ProtectedRoute({ role, children }) {
     return <Navigate to="/login" replace />;
   }
 
-  if (role && session.role !== role) {
-    return <Navigate to="/login" replace />;
+  if (role) {
+    const allowed = Array.isArray(role) ? role : [role];
+    if (!allowed.includes(session.role)) {
+      return <Navigate to="/login" replace />;
+    }
   }
 
   return children;

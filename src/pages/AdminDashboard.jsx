@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import QuestionBuilderTab from "../components/admin/QuestionBuilderTab";
 import SubmissionsTab from "../components/admin/SubmissionsTab";
+import FacultyManagementTab from "../components/admin/FacultyManagementTab";
 import PerformanceAnalyticsTab from "../components/admin/PerformanceAnalyticsTab";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import { useAuth } from "../context/AuthContext";
@@ -13,7 +14,7 @@ export default function AdminDashboard() {
   const { session, logout } = useAuth();
   const { loadUserTheme, resetTheme } = useTheme();
   const navigate = useNavigate();
-  const [activeView, setActiveView] = useState("builder"); // 'builder' | 'submissions' | 'analytics'
+  const [activeView, setActiveView] = useState("builder"); // 'builder' | 'submissions' | 'faculty_mgmt' | 'analytics'
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [submissionsRefreshKey, setSubmissionsRefreshKey] = useState(0);
 
@@ -45,6 +46,8 @@ export default function AdminDashboard() {
     switch (activeView) {
       case "submissions":
         return "Faculty Submissions";
+      case "faculty_mgmt":
+        return "Faculty Management & Administration";
       case "analytics":
         return "Performance Analytics";
       case "builder":
@@ -74,6 +77,9 @@ export default function AdminDashboard() {
           </div>
           <div className={activeView === "submissions" ? "" : "hidden"}>
             <SubmissionsTab refreshKey={submissionsRefreshKey} />
+          </div>
+          <div className={activeView === "faculty_mgmt" ? "" : "hidden"}>
+            <FacultyManagementTab />
           </div>
           <div className={activeView === "analytics" ? "" : "hidden"}>
             <PerformanceAnalyticsTab />
