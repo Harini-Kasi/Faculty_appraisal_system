@@ -1,0 +1,133 @@
+import React from "react";
+import { useAuth } from "../../context/AuthContext";
+
+const FIELDS = [
+  { key: "areaOfSpecialization", label: "Area of Specialization", type: "text", placeholder: "e.g. Artificial Intelligence" },
+  { key: "teachingExperience", label: "Teaching Experience (Years)", type: "number", placeholder: "0" },
+  { key: "industryExperience", label: "Industry Experience (Years)", type: "number", placeholder: "0" },
+  { key: "coursesTaughtOdd", label: "Courses Taught (Odd Semester)", type: "text", placeholder: "e.g. Data Structures, AI Basics" },
+  { key: "coursesTaughtEven", label: "Courses Taught (Even Semester)", type: "text", placeholder: "e.g. Machine Learning, DBMS" },
+  { key: "ugProjectsGuided", label: "UG Projects Guided", type: "number", placeholder: "0" },
+  { key: "pgProjectsGuided", label: "PG Projects Guided", type: "number", placeholder: "0" },
+  { key: "tutorship", label: "Select Tutorship", type: "text", placeholder: "Select Tutorship" },
+];
+
+const ENGINEERING_TUTORSHIP_OPTIONS = [
+  "II Year",
+  "III Year",
+  "IV Year",
+  "PG",
+  "Not applicable"
+];
+
+const SH_TUTORSHIP_OPTIONS = [
+  "I Year",
+  "Not applicable"
+];
+
+export default function FacultyDetailsForm({
+  details,
+  onChange,
+  errorKeys,
+  department: propDepartment,
+  disabled = false,
+  readOnly = false,
+  facultyInfo = null,
+}) {
+  const { session } = useAuth();
+  const currentDept = (propDepartment || facultyInfo?.department || session?.department || "").trim().toUpperCase();
+  const isSHDept = currentDept === "S&H" || currentDept.includes("SCIENCE");
+  const tutorshipOptions = isSHDept ? SH_TUTORSHIP_OPTIONS : ENGINEERING_TUTORSHIP_OPTIONS;
+
+  return (
+    <div className="card details-card">
+      <h3 className="details-card-title">Faculty Information</h3>
+
+      {facultyInfo && (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "1rem",
+            marginBottom: "1.25rem",
+            paddingBottom: "1rem",
+            borderBottom: "1px solid var(--border-color)",
+          }}
+        >
+          <div className="field-group">
+            <label>User ID / Staff ID</label>
+            <input className="input-styled" value={facultyInfo.username || ""} disabled readOnly />
+          </div>
+          <div className="field-group">
+            <label>Faculty Name</label>
+            <input className="input-styled" value={facultyInfo.name || ""} disabled readOnly />
+          </div>
+          <div className="field-group">
+            <label>Department</label>
+            <input className="input-styled" value={facultyInfo.department || ""} disabled readOnly />
+          </div>
+          <div className="field-group">
+            <label>Designation</label>
+            <input className="input-styled" value={facultyInfo.designation || ""} disabled readOnly />
+          </div>
+        </div>
+      )}
+
+      <div className="faculty-details-grid">
+        {FIELDS.map((field) => {
+          const isTutorship = field.key === "tutorship";
+
+          return (
+            <div className="field-group" key={field.key}>
+              <label htmlFor={`fd-${field.key}`}>{field.label}</label>
+              {isTutorship ? (
+                <select
+                  id={`fd-${field.key}`}
+                  className={`input-styled ${errorKeys?.has(field.key) ? "input-error" : ""}`}
+                  value={details[field.key] || ""}
+                  disabled={disabled || readOnly}
+                  onChange={(e) => onChange && onChange(field.key, e.target.value)}
+                >
+                  <option value="" disabled>
+                    Select Tutorship
+                  </option>
+                  {tutorshipOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  id={`fd-${field.key}`}
+                  type={field.type === "number" ? "number" : "text"}
+                  min={field.type === "number" ? "0" : undefined}
+                  step={field.type === "number" ? "1" : undefined}
+                  className={`input-styled ${errorKeys?.has(field.key) ? "input-error" : ""}`}
+                  value={details[field.key] || ""}
+                  disabled={disabled || readOnly}
+                  readOnly={readOnly}
+                  onChange={(e) => onChange && onChange(field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export const EMPTY_FACULTY_DETAILS = {
+  areaOfSpecialization: "",
+  teachingExperience: "",
+  industryExperience: "",
+  coursesTaughtOdd: "",
+  coursesTaughtEven: "",
+  ugProjectsGuided: "",
+  pgProjectsGuided: "",
+  tutorship: "",
+};
+
+export const FACULTY_DETAIL_FIELDS = FIELDS;
