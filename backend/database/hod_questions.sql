@@ -1,0 +1,741 @@
+-- HOD QUESTION BANK extracted from the OLD FPA source
+-- Source: facultyappraisal.zip -> frontend/src/HOD/Evaluation1.jsx ... Evaluation12.jsx
+-- This file contains HOD evaluation questions/options only.
+-- It does NOT create/import the legacy `hod` table.
+--
+-- Mapping for the CURRENT dynamic schema:
+-- department   = 'ALL'
+-- designation  = 'HOD'
+-- section_code = 'HOD'
+-- section_label = 'HOD Evaluation'
+-- group_code   = 'EVAL<n>' identifies the old HOD evaluation template.
+-- group_label  = 'Legacy HOD Evaluation <n>'
+-- question text/options/weightage are copied from the old source.
+--
+-- IMPORTANT: Old HOD UI selected different templates based on department,
+-- tutorship filter and faculty role. The group_code preserves that template
+-- distinction so the current backend can map the correct set instead of
+-- using one generic HOD question list.
+
+USE fpa_db;
+
+START TRANSACTION;
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 1
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (1, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Academic Achievements', 3, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (1, 1, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (2, 1, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (3, 1, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (4, 1, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (5, 1, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (6, 1, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (2, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Identification and Improving Slow Learners', 2, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (7, 2, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (8, 2, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (9, 2, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (10, 2, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (11, 2, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (12, 2, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (3, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Online courses (II yr to III yr Tutors)', 2, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (13, 3, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (14, 3, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (15, 3, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (16, 3, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (17, 3, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (18, 3, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (4, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Encouraging outstanding students for product development activities and paper publication', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (19, 4, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (20, 4, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (21, 4, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (22, 4, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (23, 4, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (24, 4, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (5, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Encouraging the students to participate in national and international events (other state)', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (25, 5, 'Making all the targeted students to achieve with15% of students as Prize Winners  (50% within state+30% Other State(15%Physical mode , 15% Online mode)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (26, 5, 'Making 80% of the targeted students to achieve with10% of students as Prize Winners(50% within state+30% Other State(15%Physical mode , 15% Online mode)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (27, 5, 'Making 60% of the targeted students to achieve  with5 % of students as Prize Winners  (40% within state+20% Other State( 10%Physical mode , 10% Online mode)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (28, 5, 'Making 40% of the targeted students to achieve with 3 % of students as Prize Winners  (30% within state+10% Other State(5%Physical mode, 5% Online mode)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (29, 5, 'Making 20% of the targeted students to achieve (15% within state+5% Other State(Physical mode+ Online mode)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (30, 5, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (6, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Studying Hindi, Foreign Languages', 1, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (31, 6, '5 no. of  of the students qualified in the exam', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (32, 6, '3 no. of  of the secured higher  level of Certification', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (33, 6, '3 no. of  of the secured Minimum level of Certification', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (34, 6, 'At least 4 no. of  students appearing  for Hindi/Foreign Languages exam', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (35, 6, '5  interested students learning Hindi, Foreign Languages', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (36, 6, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (7, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Maintaining discipline', 2, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (37, 7, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (38, 7, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (39, 7, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (40, 7, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (41, 7, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (42, 7, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (8, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Interpersonal relationship', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (43, 8, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (44, 8, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (45, 8, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (46, 8, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (47, 8, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (48, 8, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (9, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'Volunteering ', 2, 9);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (49, 9, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (50, 9, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (51, 9, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (52, 9, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (53, 9, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (54, 9, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (10, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL1', 'Legacy HOD Evaluation 1', 'LMS Monitoring', 2, 10);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (55, 10, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (56, 10, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (57, 10, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (58, 10, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (59, 10, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (60, 10, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 2
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (11, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Academic Achievements', 3, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (61, 11, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (62, 11, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (63, 11, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (64, 11, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (65, 11, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (66, 11, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (12, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Identification and Improving Slow Learners IV yr Tutors', 2, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (67, 12, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (68, 12, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (69, 12, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (70, 12, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (71, 12, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (72, 12, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (13, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Career settlement', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (73, 13, '100% career settlement achieved through placement/higher studies AND 1 student placed in dream/super-dream company by winning a national/international contest or hackathon', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (74, 13, '100% career settlement achieved through placement/higher studies AND any ONE of the following is achieved: 1 student placed in dream/super-dream company (regular recruitment), OR 1 student admitted to IIT/NIT via GATE score, OR 1 student admitted to IIM via CAT score, OR 1 student admitted to foreign university (with IELTS/GRE/TOEFL score)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (75, 13, '100% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (76, 13, '85% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (77, 13, '75% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (78, 13, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (14, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Students as future Entrepreneurs. Only for IV Year Mentors', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (79, 14, 'Targeted students registered for for Udyam Registration (for Micro, Small, and Medium Enterprises) or apply for Startup India recognition (for innovative startups)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (80, 14, 'Targeted students obtained MSME project for developing product', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (81, 14, 'Targeted students Obtained ED Cell fund for developing Products and submitted for MSME proposal ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (82, 14, 'At least one student as an active members in ED Cell activities', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (83, 14, 'Motivating interested students', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (84, 14, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (15, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Maintaining discipline', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (85, 15, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (86, 15, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (87, 15, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (88, 15, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (89, 15, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (90, 15, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (16, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Interpersonal relationship', 2, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (91, 16, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (92, 16, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (93, 16, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (94, 16, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (95, 16, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (96, 16, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (17, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'Volunteering ', 2, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (97, 17, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (98, 17, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (99, 17, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (100, 17, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (101, 17, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (102, 17, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (18, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL2', 'Legacy HOD Evaluation 2', 'LMS Monitoring', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (103, 18, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (104, 18, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (105, 18, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (106, 18, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (107, 18, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (108, 18, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 3
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (19, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL3', 'Legacy HOD Evaluation 3', 'Maintaining discipline', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (109, 19, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (110, 19, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (111, 19, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (112, 19, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (113, 19, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (114, 19, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (20, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL3', 'Legacy HOD Evaluation 3', 'Interpersonal relationship', 5, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (115, 20, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (116, 20, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (117, 20, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (118, 20, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (119, 20, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (120, 20, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (21, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL3', 'Legacy HOD Evaluation 3', 'Volunteering ', 5, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (121, 21, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (122, 21, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (123, 21, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (124, 21, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (125, 21, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (126, 21, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (22, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL3', 'Legacy HOD Evaluation 3', 'LMS Monitoring', 5, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (127, 22, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (128, 22, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (129, 22, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (130, 22, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (131, 22, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (132, 22, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 4
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (23, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL4', 'Legacy HOD Evaluation 4', 'Academic Achievements', 4, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (133, 23, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (134, 23, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (135, 23, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (136, 23, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (137, 23, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (138, 23, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (24, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL4', 'Legacy HOD Evaluation 4', 'Identification and Improving Slow Learners II yr & III yr Tutors', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (139, 24, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (140, 24, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (141, 24, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (142, 24, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (143, 24, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (144, 24, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (25, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL4', 'Legacy HOD Evaluation 4', 'Online courses (II yr to III yr Tutors)', 4, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (145, 25, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (146, 25, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (147, 25, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (148, 25, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (149, 25, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (150, 25, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (26, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL4', 'Legacy HOD Evaluation 4', 'Encouraging the students to participate in national and international events (outside state)', 4, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (151, 26, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (152, 26, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (153, 26, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (154, 26, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (155, 26, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (156, 26, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (27, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL4', 'Legacy HOD Evaluation 4', 'Competency training towards career settlement like skill rack, etc.', 4, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (157, 27, '90% of the Students'' have attended training/coaching  for their career requirements', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (158, 27, '80% of the Students'' have attended training/coaching  for their career requirements', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (159, 27, '70% of the Students'' have attended training/coaching  for their career requirements', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (160, 27, '60% of the Students'' have attended training/coaching  for their career requirements', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (161, 27, '50% of the Students'' have attended training/coaching  for their career requirements', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (162, 27, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 5
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (28, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL5', 'Legacy HOD Evaluation 5', 'Academic Achievements', 4, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (163, 28, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (164, 28, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (165, 28, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (166, 28, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (167, 28, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (168, 28, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (29, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL5', 'Legacy HOD Evaluation 5', 'Identification and Improving Slow Learners II yr & III yr Tutors', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (169, 29, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (170, 29, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (171, 29, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (172, 29, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (173, 29, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (174, 29, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (30, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL5', 'Legacy HOD Evaluation 5', 'Online courses (II yr to III yr Tutors)', 4, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (175, 30, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (176, 30, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (177, 30, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (178, 30, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (179, 30, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (180, 30, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (31, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL5', 'Legacy HOD Evaluation 5', 'Encouraging outstanding students for product development activities and paper publication', 3, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (181, 31, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (182, 31, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (183, 31, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (184, 31, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (185, 31, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (186, 31, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (32, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL5', 'Legacy HOD Evaluation 5', 'Encouraging the students to participate in national and international events (outside state)', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (187, 32, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (188, 32, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (189, 32, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (190, 32, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (191, 32, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (192, 32, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (33, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL5', 'Legacy HOD Evaluation 5', 'Competency training towards career settlement like skill rack, etc.', 2, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (193, 33, '90% of the Students'' have attended training/coaching  for their career requirements', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (194, 33, '80% of the Students'' have attended training/coaching  for their career requirements', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (195, 33, '70% of the Students'' have attended training/coaching  for their career requirements', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (196, 33, '60% of the Students'' have attended training/coaching  for their career requirements', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (197, 33, '50% of the Students'' have attended training/coaching  for their career requirements', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (198, 33, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 6
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (34, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Academic Achievements', 3, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (199, 34, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (200, 34, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (201, 34, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (202, 34, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (203, 34, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (204, 34, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (35, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Identification and Improving Slow Learners', 2, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (205, 35, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (206, 35, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (207, 35, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (208, 35, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (209, 35, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (210, 35, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (36, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Online courses (II yr to III yr Tutors)', 1, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (211, 36, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (212, 36, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (213, 36, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (214, 36, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (215, 36, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (216, 36, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (37, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Encouraging outstanding students for product development activities and paper publication', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (217, 37, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (218, 37, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (219, 37, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (220, 37, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (221, 37, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (222, 37, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (38, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Encouraging the students to participate in national and international events (other state)', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (223, 38, 'Making all the targeted students to achieve with15% of students as Prize Winners  (50% within state+30% Other State(15%Physical mode , 15% Online mode)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (224, 38, 'Making 80% of the targeted students to achieve with10% of students as Prize Winners(50% within state+30% Other State(15%Physical mode , 15% Online mode)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (225, 38, 'Making 60% of the targeted students to achieve  with5 % of students as Prize Winners  (40% within state+20% Other State( 10%Physical mode , 10% Online mode)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (226, 38, 'Making 40% of the targeted students to achieve with 3 % of students as Prize Winners  (30% within state+10% Other State(5%Physical mode, 5% Online mode)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (227, 38, 'Making 20% of the targeted students to achieve (15% within state+5% Other State(Physical mode+ Online mode)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (228, 38, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (39, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Competency training towards career settlement âGATE,GRE,TOFEL, GMATE, IELTS, CAT, MAT etc.', 1, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (229, 39, '3of the Student got eligible Score with higher cutoff (2- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (230, 39, '2of the Student got eligible Score with higher cutoff (1- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (231, 39, '3 of the Student got eligible Score (2- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (232, 39, '2 of the Student got minimum eligible Score (1- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (233, 39, '5 no. of Studentsâ have attended training/coaching for their career requirements through college level higher studies cell (3- GATE, 2- GMATE, IELTS, CAT, MAT etc.)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (234, 39, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (40, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Studying Hindi, Foreign Languages', 1, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (235, 40, '5 no. of  of the students qualified in the exam', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (236, 40, '3 no. of  of the secured higher  level of Certification', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (237, 40, '3 no. of  of the secured Minimum level of Certification', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (238, 40, 'At least 4 no. of  students appearing  for Hindi/Foreign Languages exam', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (239, 40, '5  interested students learning Hindi, Foreign Languages', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (240, 40, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (41, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Maintaining discipline', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (241, 41, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (242, 41, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (243, 41, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (244, 41, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (245, 41, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (246, 41, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (42, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Interpersonal relationship', 2, 9);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (247, 42, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (248, 42, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (249, 42, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (250, 42, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (251, 42, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (252, 42, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (43, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'Volunteering ', 2, 10);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (253, 43, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (254, 43, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (255, 43, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (256, 43, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (257, 43, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (258, 43, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (44, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL6', 'Legacy HOD Evaluation 6', 'LMS Monitoring', 2, 11);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (259, 44, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (260, 44, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (261, 44, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (262, 44, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (263, 44, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (264, 44, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 7
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (45, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Academic Achievements', 3, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (265, 45, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (266, 45, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (267, 45, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (268, 45, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (269, 45, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (270, 45, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (46, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Identification and Improving Slow Learners', 2, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (271, 46, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (272, 46, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (273, 46, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (274, 46, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (275, 46, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (276, 46, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (47, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Online courses (II yr to III yr Tutors)', 1, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (277, 47, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (278, 47, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (279, 47, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (280, 47, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (281, 47, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (282, 47, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (48, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Encouraging outstanding students for product development activities and paper publication', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (283, 48, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (284, 48, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (285, 48, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (286, 48, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (287, 48, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (288, 48, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (49, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Encouraging the students to participate in national and international events (other state)', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (289, 49, 'Making all the targeted students to achieve with15% of students as Prize Winners  (50% within state+30% Other State(15%Physical mode , 15% Online mode)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (290, 49, 'Making 80% of the targeted students to achieve with10% of students as Prize Winners(50% within state+30% Other State(15%Physical mode , 15% Online mode)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (291, 49, 'Making 60% of the targeted students to achieve  with5 % of students as Prize Winners  (40% within state+20% Other State( 10%Physical mode , 10% Online mode)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (292, 49, 'Making 40% of the targeted students to achieve with 3 % of students as Prize Winners  (30% within state+10% Other State(5%Physical mode, 5% Online mode)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (293, 49, 'Making 20% of the targeted students to achieve (15% within state+5% Other State(Physical mode+ Online mode)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (294, 49, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (50, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Studying Hindi, Foreign Languages', 1, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (295, 50, '5 no. of  of the students qualified in the exam', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (296, 50, '3 no. of  of the secured higher  level of Certification', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (297, 50, '3 no. of  of the secured Minimum level of Certification', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (298, 50, 'At least 4 no. of  students appearing  for Hindi/Foreign Languages exam', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (299, 50, '5  interested students learning Hindi, Foreign Languages', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (300, 50, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (51, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Maintaining discipline', 2, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (301, 51, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (302, 51, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (303, 51, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (304, 51, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (305, 51, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (306, 51, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (52, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Interpersonal relationship', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (307, 52, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (308, 52, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (309, 52, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (310, 52, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (311, 52, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (312, 52, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (53, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'Volunteering ', 2, 9);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (313, 53, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (314, 53, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (315, 53, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (316, 53, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (317, 53, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (318, 53, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (54, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL7', 'Legacy HOD Evaluation 7', 'LMS Monitoring', 2, 10);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (319, 54, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (320, 54, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (321, 54, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (322, 54, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (323, 54, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (324, 54, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 8
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (55, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Academic Achievements', 2, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (325, 55, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (326, 55, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (327, 55, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (328, 55, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (329, 55, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (330, 55, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (56, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Identification and Improving Slow Learners', 2, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (331, 56, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (332, 56, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (333, 56, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (334, 56, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (335, 56, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (336, 56, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (57, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Online courses (II yr to III yr Tutors)', 1, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (337, 57, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (338, 57, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (339, 57, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (340, 57, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (341, 57, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (342, 57, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (58, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Encouraging outstanding students for product development activities and paper publication', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (343, 58, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (344, 58, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (345, 58, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (346, 58, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (347, 58, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (348, 58, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (59, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Encouraging the students to participate in national and international events (other state)', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (349, 59, 'Making all the targeted students to achieve with15% of students as Prize Winners  (50% within state+30% Other State(15%Physical mode , 15% Online mode)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (350, 59, 'Making 80% of the targeted students to achieve with10% of students as Prize Winners(50% within state+30% Other State(15%Physical mode , 15% Online mode)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (351, 59, 'Making 60% of the targeted students to achieve  with5 % of students as Prize Winners  (40% within state+20% Other State( 10%Physical mode , 10% Online mode)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (352, 59, 'Making 40% of the targeted students to achieve with 3 % of students as Prize Winners  (30% within state+10% Other State(5%Physical mode, 5% Online mode)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (353, 59, 'Making 20% of the targeted students to achieve (15% within state+5% Other State(Physical mode+ Online mode)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (354, 59, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (60, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Competency training towards career settlement âGATE,GRE,TOFEL, GMATE, IELTS, CAT, MAT etc.', 1, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (355, 60, '3of the Student got eligible Score with higher cutoff (2- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (356, 60, '2of the Student got eligible Score with higher cutoff (1- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (357, 60, '3 of the Student got eligible Score (2- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (358, 60, '2 of the Student got minimum eligible Score (1- GATE, 1- GMATE, IELTS, CAT, MAT etc.)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (359, 60, '5 no. of Studentsâ have attended training/coaching for their career requirements through college level higher studies cell (3- GATE, 2- GMATE, IELTS, CAT, MAT etc.)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (360, 60, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (61, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Studying Hindi, Foreign Languages', 1, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (361, 61, '5 no. of  of the students qualified in the exam', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (362, 61, '3 no. of  of the secured higher  level of Certification', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (363, 61, '3 no. of  of the secured Minimum level of Certification', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (364, 61, 'At least 4 no. of  students appearing  for Hindi/Foreign Languages exam', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (365, 61, '5  interested students learning Hindi, Foreign Languages', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (366, 61, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (62, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Maintaining discipline', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (367, 62, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (368, 62, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (369, 62, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (370, 62, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (371, 62, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (372, 62, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (63, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Interpersonal relationship', 2, 9);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (373, 63, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (374, 63, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (375, 63, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (376, 63, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (377, 63, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (378, 63, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (64, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'Volunteering ', 2, 10);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (379, 64, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (380, 64, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (381, 64, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (382, 64, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (383, 64, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (384, 64, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (65, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL8', 'Legacy HOD Evaluation 8', 'LMS Monitoring', 2, 11);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (385, 65, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (386, 65, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (387, 65, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (388, 65, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (389, 65, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (390, 65, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 9
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (66, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Academic Achievements', 3, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (391, 66, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (392, 66, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (393, 66, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (394, 66, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (395, 66, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (396, 66, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (67, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Identification and Improving Slow Learners IV yr Tutors', 3, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (397, 67, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (398, 67, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (399, 67, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (400, 67, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (401, 67, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (402, 67, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (68, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Career settlement', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (403, 68, '100% career settlement achieved through placement/higher studies AND 1 student placed in dream/super-dream company by winning a national/international contest or hackathon', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (404, 68, '100% career settlement achieved through placement/higher studies AND any ONE of the following is achieved: 1 student placed in dream/super-dream company (regular recruitment), OR 1 student admitted to IIT/NIT via GATE score, OR 1 student admitted to IIM via CAT score, OR 1 student admitted to foreign university (with IELTS/GRE/TOEFL score)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (405, 68, '100% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (406, 68, '85% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (407, 68, '75% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (408, 68, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (69, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Students as future Entrepreneurs. Only for IV Year Mentors', 1, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (409, 69, 'Targeted students registered for for Udyam Registration (for Micro, Small, and Medium Enterprises) or apply for Startup India recognition (for innovative startups)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (410, 69, 'Targeted students obtained MSME project for developing product', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (411, 69, 'Targeted students Obtained ED Cell fund for developing Products and submitted for MSME proposal ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (412, 69, 'At least one student as an active members in ED Cell activities', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (413, 69, 'Motivating interested students', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (414, 69, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (70, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Maintaining discipline', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (415, 70, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (416, 70, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (417, 70, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (418, 70, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (419, 70, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (420, 70, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (71, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Interpersonal relationship', 2, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (421, 71, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (422, 71, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (423, 71, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (424, 71, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (425, 71, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (426, 71, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (72, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'Volunteering ', 2, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (427, 72, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (428, 72, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (429, 72, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (430, 72, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (431, 72, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (432, 72, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (73, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL9', 'Legacy HOD Evaluation 9', 'LMS Monitoring', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (433, 73, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (434, 73, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (435, 73, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (436, 73, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (437, 73, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (438, 73, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 10
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (74, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Academic Achievements', 4, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (439, 74, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (440, 74, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (441, 74, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (442, 74, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (443, 74, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (444, 74, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (75, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Identification and Improving Slow Learners', 2, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (445, 75, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (446, 75, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (447, 75, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (448, 75, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (449, 75, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (450, 75, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (76, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Online courses (II yr to III yr Tutors)', 1, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (451, 76, 'Making 80% of the targeted students to complete the online courses', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (452, 76, 'Making 60% of the targeted students to complete the online courses ', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (453, 76, 'Making 40% of the targeted students to complete the online courses ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (454, 76, 'Making 20% of the targeted students to complete the online courses ', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (455, 76, 'Motivating all students to register for online courses equivalent to elective courses', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (456, 76, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (77, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Encouraging outstanding students for product development activities and paper publication', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (457, 77, 'Making all the targeted students to achieve', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (458, 77, 'Making 80% of the targeted students to achieve', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (459, 77, 'Making 60% of the targeted students to achieve', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (460, 77, 'Making 40% of the targeted students to achieve', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (461, 77, 'Making 20% of the targeted students to achieve', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (462, 77, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (78, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Encouraging the students to participate in national and international events (other state)', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (463, 78, 'Making all the targeted students to achieve with15% of students as Prize Winners  (50% within state+30% Other State(15%Physical mode , 15% Online mode)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (464, 78, 'Making 80% of the targeted students to achieve with10% of students as Prize Winners(50% within state+30% Other State(15%Physical mode , 15% Online mode)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (465, 78, 'Making 60% of the targeted students to achieve  with5 % of students as Prize Winners  (40% within state+20% Other State( 10%Physical mode , 10% Online mode)', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (466, 78, 'Making 40% of the targeted students to achieve with 3 % of students as Prize Winners  (30% within state+10% Other State(5%Physical mode, 5% Online mode)', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (467, 78, 'Making 20% of the targeted students to achieve (15% within state+5% Other State(Physical mode+ Online mode)', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (468, 78, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (79, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Studying Hindi, Foreign Languages', 1, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (469, 79, '5 no. of  of the students qualified in the exam', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (470, 79, '3 no. of  of the secured higher  level of Certification', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (471, 79, '3 no. of  of the secured Minimum level of Certification', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (472, 79, 'At least 4 no. of  students appearing  for Hindi/Foreign Languages exam', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (473, 79, '5  interested students learning Hindi, Foreign Languages', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (474, 79, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (80, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Maintaining discipline', 2, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (475, 80, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (476, 80, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (477, 80, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (478, 80, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (479, 80, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (480, 80, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (81, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Interpersonal relationship', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (481, 81, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (482, 81, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (483, 81, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (484, 81, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (485, 81, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (486, 81, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (82, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'Volunteering ', 2, 9);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (487, 82, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (488, 82, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (489, 82, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (490, 82, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (491, 82, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (492, 82, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (83, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL10', 'Legacy HOD Evaluation 10', 'LMS Monitoring', 2, 10);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (493, 83, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (494, 83, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (495, 83, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (496, 83, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (497, 83, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (498, 83, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 11
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (84, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Academic Achievements', 3, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (499, 84, 'Making more than 90%  the students to achieve the allotted CGPAs', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (500, 84, 'Making more than 80% the students to achieve the allotted CGPAs', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (501, 84, 'Making more than 70% the students to achieve the allotted CGPAs', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (502, 84, 'Making more than 60% the students to achieve the allotted CGPAs', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (503, 84, 'Making more than 50% the students to achieve the allotted CGPAs', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (504, 84, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (85, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Identification and Improving Slow Learners IV yr Tutors', 3, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (505, 85, 'Identified the learning capability and disability and improved the performances of all slow learners', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (506, 85, 'Identified the learning capability and disability and improved the performances of 50% slow learners', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (507, 85, 'Identified the learning capability and disability and improved the performances of 25% slow learners', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (508, 85, 'Identified all slow learners and efforts taken', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (509, 85, 'Only identified the slow learners', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (510, 85, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (86, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Career settlement', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (511, 86, '100% career settlement achieved through placement/higher studies AND 1 student placed in dream/super-dream company by winning a national/international contest or hackathon', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (512, 86, '100% career settlement achieved through placement/higher studies AND any ONE of the following is achieved: 1 student placed in dream/super-dream company (regular recruitment), OR 1 student admitted to IIT/NIT via GATE score, OR 1 student admitted to IIM via CAT score, OR 1 student admitted to foreign university (with IELTS/GRE/TOEFL score)', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (513, 86, '100% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (514, 86, '85% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (515, 86, '75% career settlement achieved through placement/higher studies with demonstrated competitive exam participation', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (516, 86, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (87, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Students as future Entrepreneurs. Only for IV Year Mentors', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (517, 87, 'Targeted students registered for for Udyam Registration (for Micro, Small, and Medium Enterprises) or apply for Startup India recognition (for innovative startups)', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (518, 87, 'Targeted students obtained MSME project for developing product', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (519, 87, 'Targeted students Obtained ED Cell fund for developing Products and submitted for MSME proposal ', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (520, 87, 'At least one student as an active members in ED Cell activities', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (521, 87, 'Motivating interested students', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (522, 87, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (88, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Maintaining discipline', 2, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (523, 88, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (524, 88, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (525, 88, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (526, 88, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (527, 88, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (528, 88, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (89, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Interpersonal relationship', 2, 6);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (529, 89, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (530, 89, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (531, 89, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (532, 89, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (533, 89, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (534, 89, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (90, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'Volunteering ', 2, 7);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (535, 90, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (536, 90, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (537, 90, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (538, 90, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (539, 90, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (540, 90, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (91, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL11', 'Legacy HOD Evaluation 11', 'LMS Monitoring', 2, 8);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (541, 91, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (542, 91, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (543, 91, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (544, 91, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (545, 91, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (546, 91, 'Not Applicable', 0, 6);
+
+-- =============================================================
+-- LEGACY HOD EVALUATION TEMPLATE 12
+-- =============================================================
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (92, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL12', 'Legacy HOD Evaluation 12', 'Proficiency in the subject matter', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (547, 92, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (548, 92, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (549, 92, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (550, 92, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (551, 92, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (552, 92, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (93, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL12', 'Legacy HOD Evaluation 12', 'Involvement in assigned duties', 5, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (553, 93, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (554, 93, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (555, 93, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (556, 93, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (557, 93, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (558, 93, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (94, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL12', 'Legacy HOD Evaluation 12', 'Maintaining discipline', 5, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (559, 94, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (560, 94, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (561, 94, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (562, 94, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (563, 94, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (564, 94, 'Not Applicable', 0, 6);
+INSERT INTO questions (id, department, designation, section_code, section_label, subsection_code, subsection_label, group_code, group_label, text, weightage, order_index) VALUES (95, 'ALL', 'HOD', 'HOD', 'HOD Evaluation', NULL, NULL, 'EVAL12', 'Legacy HOD Evaluation 12', 'Interpersonal relationship', 5, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (565, 95, 'Excellent', 5, 1);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (566, 95, 'Very good', 4, 2);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (567, 95, 'Good', 3, 3);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (568, 95, 'Satisfactory', 2, 4);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (569, 95, 'Low', 1, 5);
+INSERT INTO options (id, question_id, text, score, order_index) VALUES (570, 95, 'Not Applicable', 0, 6);
+
+COMMIT;
+
+-- Total HOD question records: 95
+-- Total HOD option records: 570
+-- Note: hpe is an old aggregate HOD tutorship score, not a question/options item, so it is not inserted here.
